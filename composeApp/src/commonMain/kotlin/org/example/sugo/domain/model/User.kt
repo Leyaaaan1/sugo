@@ -1,5 +1,4 @@
 
-
 data class User(
     val id: String,
     val name: String,
@@ -14,3 +13,10 @@ enum class UserRole {
     RUNNER,
     BOTH
 }
+
+data class UserStats(
+    val completedErrands: Int,
+    val successfulBids: Int,
+    val averageRating: Double,
+    val totalEarnings: Double
+)
