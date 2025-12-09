@@ -4,6 +4,7 @@ package org.example.sugo.domain.usecase.errand
 import CampusLocation
 import Errand
 import ErrandCategory
+import TimeUtil
 import User
 import org.example.sugo.domain.repository.ErrandRepository
 import org.example.sugo.domain.usecase.pricing.CalculatePricingUseCase
@@ -13,7 +14,7 @@ import org.example.sugo.domain.model.Result
 
 class CreateErrandUseCase(
     private val errandRepository: ErrandRepository,
-    private val calculatePricing: CalculatePricingUseCase
+    private val calculatePricing: CalculatePricingUseCase,
 ) {
     @OptIn(ExperimentalTime::class)
     suspend operator fun invoke(
@@ -58,12 +59,15 @@ class CreateErrandUseCase(
             createdAt = Clock.System.now()
         )
 
-        // Save to repository
         return errandRepository.createErrand(errand)
     }
 
     @OptIn(ExperimentalTime::class)
     private fun generateErrandId(): String {
-        return "ERR_${Clock.System.now().toEpochMilliseconds()}_${(1000..9999).random()}"
+        val timestamp = TimeUtil
+            .getCurrentInstant()
+            .toEpochMilliseconds()
+
+        return "ERR_${timestamp}_${(1000..9999).random()}"
     }
 }

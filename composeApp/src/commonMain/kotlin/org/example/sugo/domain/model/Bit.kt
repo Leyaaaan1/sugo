@@ -1,6 +1,5 @@
-import kotlin.time.Clock
+import kotlinx.datetime.LocalDateTime
 import kotlin.time.ExperimentalTime
-import kotlin.time.Instant
 
 data class Bid @OptIn(ExperimentalTime::class) constructor(
     val id: String,
@@ -10,7 +9,7 @@ data class Bid @OptIn(ExperimentalTime::class) constructor(
     val message: String = "",
     val estimatedTime: Int,
     val status: BidStatus,
-    val createdAt: Instant = Clock.System.now(),
+    val createdAt: LocalDateTime,
     val responseMessage: String = ""
 )
 

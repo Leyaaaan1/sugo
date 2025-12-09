@@ -5,7 +5,7 @@ import BidStatus
 import kotlinx.coroutines.flow.Flow
 
 interface BidRepository {
-    suspend fun placeBid(bid: Bid): Result<Bid>
+    suspend fun placeBid(bid: Bid): org.example.sugo.domain.model.Result<Bid>
 
     suspend fun getBidById(id: String): Result<Bid>
 
